@@ -4,7 +4,6 @@ A Laravel-based inventory and sales management system with product tracking, cat
 
 ---
 
-## 📸 Cover Images
 
 ## 📸 Cover Images
 
@@ -75,6 +74,13 @@ Now update database credentials inside .env. <br>
 - Login Two Way
 - 1. Sanctum (JetStream) 
 - 2. Oauth2 (Passport) - Api Login [Sodium Extention Enabled Required] <br>
+<br>
+### Auth (User & Password)
+<code>
+
+    Email: admin@domain.com
+    Password: 012345
+</code> <br>
 
  ## Procedure: Code Within Project, In Simple
 1. User logs into Project A
@@ -83,11 +89,6 @@ Now update database credentials inside .env. <br>
 4. B asks A to validate token
 5. If valid → B logs user in
 
-- Normal Login
-<code>
-    Email: admin@domain.com
-    Password: 012345
-</code> <br>
 
 ## 📊 System Modules
 
