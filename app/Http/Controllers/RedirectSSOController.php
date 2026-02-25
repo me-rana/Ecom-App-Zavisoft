@@ -7,19 +7,20 @@ use Illuminate\Support\Facades\Http;
 
 class RedirectSSOController extends Controller
 {
-    public function toFood(Request $request)
-    {
-        // Get logged-in user from Jetstream session
-        $user = $request->user();
+   public function toFood(Request $request)
+{
+    $user = $request->user();
 
-        if (!$user) {
-            abort(401, 'User not logged in');
-        }
-
-        // Create Passport token directly
-        $token = $user->createToken('sso-token')->accessToken;
-
-        // Redirect to Food app with token
-        return redirect('https://food-app.rana.my.id/sso/login?token=' . $token);
+    if (!$user) {
+        abort(401);
     }
+
+    // IMPORTANT: store token result first
+    $tokenResult = $user->createToken('sso-token');
+
+    // IMPORTANT: send ONLY accessToken string
+    $token = $tokenResult->accessToken;
+
+    return redirect('https://food-app.rana.my.id/sso/login?token='.$token);
+}
 }
