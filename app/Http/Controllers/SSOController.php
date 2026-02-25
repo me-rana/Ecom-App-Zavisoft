@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Http;
 use Laravel\Passport\Token;
 
 class SSOController extends Controller
@@ -32,7 +34,7 @@ class SSOController extends Controller
 
     // Ask Ecom to verify token
     $response = Http::withToken($token)
-        ->get('https://ecom-app.rana.my.id/api/sso/user');
+        ->get('https://food-app.rana.my.id/api/sso/user');
 
     if (!$response->ok()) {
         abort(401, 'Token invalid from Ecom');
