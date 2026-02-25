@@ -24,6 +24,14 @@ class ProductSeeder extends Seeder
             ]
         );
 
+        $category_two = Category::updateOrCreate(
+            ['slug' => Str::slug('Cosmentics')],
+            [
+                'name'       => 'Cosmentics',
+                'image_path' => 'categories/03eCZddkwb7cea4QwLOk054vcTzRn1TPXguew0bn.jpg',
+            ]
+        );
+
         Product::updateOrCreate(
             ['slug' => Str::slug('HP 845 G8')],
             [
@@ -45,6 +53,30 @@ class ProductSeeder extends Seeder
                 'purchase_price' => 180000,
                 'image_path'     => 'products/QEXCGsbWWnSMpoc8gVfjmKr0ACFeYgwLPmIsnzJL.jpg',
                 'category_id'    => $category->id,
+            ]
+        );
+
+          Product::updateOrCreate(
+            ['slug' => Str::slug('Goji Cream')],
+            [
+                'name'           => 'Goji Cream',
+                'quantity'       => 100,
+                'sell_price'     => 4800,
+                'purchase_price' => 3850,
+                'image_path'     => 'products/QEXCGsbWWnSMpoc8gVfjmKr0ACFeYgwLPmIsnzJL.jpg',
+                'category_id'    => $category_two->id,
+            ]
+        );
+
+        Product::updateOrCreate(
+            ['slug' => Str::slug('Helenvita Sun Cream')],
+            [
+                'name'           => 'Helenvita Sun Cream',
+                'quantity'       => 100,
+                'sell_price'     => 4800,
+                'purchase_price' => 3850,
+                'image_path'     => 'products/QEXCGsbWWnSMpoc8gVfjmKr0ACFeYgwLPmIsnzJL.jpg',
+                'category_id'    => $category_two->id,
             ]
         );
     }
