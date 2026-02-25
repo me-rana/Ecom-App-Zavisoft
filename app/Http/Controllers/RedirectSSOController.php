@@ -9,13 +9,17 @@ class RedirectSSOController extends Controller
 {
     public function toFood(Request $request)
     {
-        // Call own project token endpoint (user already logged via Jetstream)
-        $response = Http::withCookies($request->cookies->all(), null)
-            ->get('https://ecom-app.rana.my.id/sso/token');
+        // Get logged-in user from Jetstream session
+        $user = $request->user();
 
-        $token = $response->json()['token'];
+        if (!$user) {
+            abort(401, 'User not logged in');
+        }
 
-        // Redirect to other project with token
-        return redirect('https://food-app.rana.my.id/sso/login?token='.$token);
+        // Create Passport token directly
+        $token = $user->createToken('sso-token')->accessToken;
+
+        // Redirect to Food app with token
+        return redirect('https://food-app.rana.my.id/sso/login?token=' . $token);
     }
 }
