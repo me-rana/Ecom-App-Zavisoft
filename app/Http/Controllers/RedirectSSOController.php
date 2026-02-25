@@ -17,7 +17,7 @@ class RedirectSSOController extends Controller
 
     // IMPORTANT: store token result first
     // $tokenResult = $user->createToken('sso-token');
-     return $token = $user->createToken('sso')->plainTextToken;
+    $token = $user->createToken('sso')->plainTextToken;
 
 
     return redirect('https://food-app.rana.my.id/sso/login?token='.$token);
