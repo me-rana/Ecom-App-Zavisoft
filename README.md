@@ -74,13 +74,12 @@ Now update database credentials inside .env. <br>
 - Login Two Way
 - 1. Sanctum (JetStream) 
 - 2. Oauth2 (Passport) - Api Login [Sodium Extention Enabled Required] <br>
-<br>
+
 ### Auth (User & Password)
 <code>
-
     Email: admin@domain.com
     Password: 012345
-</code> <br>
+</code> 
 
  ## Procedure: Code Within Project, In Simple
 1. User logs into Project A
