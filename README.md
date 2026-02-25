@@ -4,8 +4,12 @@ A Laravel-based inventory and sales management system with product tracking, cat
 
 ---
 
-## 📸 Cover Image
-(Add your screenshot/banner here)
+## 📸 Cover Images
+
+<p align="center">
+  <img src="assets/img/EcomCover.png" alt="Project Screenshot 1" width="45%">
+  <img src="assets/img/Ecom.png" alt="Project Screenshot 2" width="45%">
+</p>
 
 ---
 
