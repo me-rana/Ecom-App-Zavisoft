@@ -23,26 +23,34 @@ class SSOController extends Controller
 
     // Step 2: Accept token and log user in
     public function login(Request $request)
-    {
-        $accessToken = $request->token;
+{
+    $token = $request->token;
 
-        if (!$accessToken) {
-            abort(401, 'Token missing');
-        }
-
-        // Extract token ID from Passport token format: id|hash
-        $tokenId = explode('|', $accessToken)[0];
-
-        $token = Token::find($tokenId);
-
-        if (!$token || $token->revoked) {
-            abort(401, 'Invalid token');
-        }
-
-        $user = $token->user;
-
-        Auth::login($user);
-
-        return redirect('/dashboard');
+    if (!$token) {
+        abort(401, 'Token missing');
     }
+
+    // Ask Ecom to verify token
+    $response = Http::withToken($token)
+        ->get('https://ecom-app.rana.my.id/api/sso/user');
+
+    if (!$response->ok()) {
+        abort(401, 'Token invalid from Ecom');
+    }
+
+    $remoteUser = $response->json();
+
+    // Match or create local user
+    $user = User::firstOrCreate(
+        ['email' => $remoteUser['email']],
+        [
+            'name' => $remoteUser['name'] ?? 'SSO User',
+            'password' => bcrypt(str()->random(16))
+        ]
+    );
+
+    Auth::login($user);
+
+    return redirect('/dashboard');
+}
 }
