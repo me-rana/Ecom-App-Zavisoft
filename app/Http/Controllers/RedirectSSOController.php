@@ -11,7 +11,7 @@ class RedirectSSOController extends Controller
     {
         // Call own project token endpoint (user already logged via Jetstream)
         $response = Http::withCookies($request->cookies->all(), null)
-            ->get('https://ecom-app.rana.my.id//sso/token');
+            ->get('https://ecom-app.rana.my.id/sso/token');
 
         $token = $response->json()['token'];
 
